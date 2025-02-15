@@ -1,167 +1,172 @@
 <!DOCTYPE html>
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
-    <title>💗</title>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Al borde de la locura</title>
     <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #000;
+            font-family: 'Georgia', serif;
+            color: #fff;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         canvas {
-            position: absolute;
-            left: 0;
+            position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, .2);
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1200px;
+            margin: 40px;
+        }
+
+        .poem {
+            text-align: center;
+            line-height: 2;
+            font-size: 1.25rem;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            white-space: pre-line;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
         }
     </style>
 </head>
 <body>
+    <canvas id="heartCanvas"></canvas>
+    <div class="container">
+        <div class="poem" id="poem">
+            Una muestra de mí, escrita por mi puño. Hace tiempo mi pasión por el aprendizaje me llevó a cuestionar si esto es lo correcto. Entonces, empecé a leer sobre el hombre intelectual, fui testigo, aún enfrento las consecuencias que el amor al conocimiento sobre mi mente. 
+			Tal vez experimenté el amor en ciertas ocasiones, supe tomar límites pues no hubiese sido capaz de tomar medidas estrepitosas por una emoción, a la cual Nietzsche consideraba debilidad.
+			Mi super hombre, mi super yo. Mis accciones siempre estaban al servicio de mi ser, el egoísmo invadía  mi alma. Y hoy, me siento tan vulnerable. ¿Cómo pasé de ser eso a mi yo presente?
+			Hace meses, empecé a hablar con una persona extraña, tenía auras de misterio. Su existencia, no la podía asegurar en cuanto mis ojos no sean testigos de la belleza que atraía. Nunca esperaba algo especial, a la final mi camino estaba tanlejos de ella. En cuanto el tiempo consumía la existencia, la mía estaba condicionada a la esperanza. 
+			Buscaba verla, en tanto que mi corazón comenzó a funcionar, antes solo existía vacío. En un momento caí en tristeza, recuerdo no poder llorar, tal vez la depresión se expresa en cualquier nulidad de emociones adyacentes a cualquier acción. El sentirse VIVO. 
+			¡Han derrivado al invencible! 
+			Los demonios de mi cabeza clamaban. El caos en mi mente, la lucha ocnstante contra mí mismo. Nunca había enfrentado un reto más grande que el desafiarme a mí mismo. Pero, en el momento que tú llegas, el orden se restablece. Como cuál diosa justiciera, la que me trae armonía. 
+			En el Banquete, el amor es considerado desde varios puntos. muchos lo consideran como una enfermedad, otros como la búsqueda de la perfección. Y si mi cuerpo reacciona al amor, las frustraciones en noches enteras sin dormir. O tal vez, no haber dormido pero hablar contigo en ese lapso. 
+			¿Cariño y si te digo quee stoy lidiando con mi locura?
+			Escribiendo esto me quiebro, pero mi voluntad sobrepone sus deseos, y mi corazón late con una fuerza que me hace sentir vivo, aunque mi alma esté llena de dudas y temores. 
+			Sin embargo es en este acto de escribir que encuentro la libertad de ser yo mismo, de dejar que mis pesnamientos y sentimientos fluyan sin restricciones, y de permitir que mi verdadero yo se manifieste, aunque sea con la vulnerabilidad que conlleva. 
+			No estoy cuerdo, pensaría que un reseteo de mi mente será una buena opción. Pero no, la dulzura que un día compartiste conmigo no existirá en otra realidad. Y si la locura se agrava, acepto mi destino, mi fracaso pero victoria en tanto que permitiste que mi vida tenga sentido. 
+			Siempre minimizaba el poder del amor. El poder de tu amor, ha dominado a mi ser, hoy me declaro irrevocablemente tuyo, un regalo de mi corazón y mi alma, sin condiciones ni reservas. Me entrego a ti, sin pedir nada a cambio, solo deseando ser tuyo, completamente y para siempre. 
+			Mi amor, mi vida, mi todo, te pertenezco desde este momento, te ama´re y cuidaré con cada fibra de mi ser, sin importarme nada más que tu felicidad y tu amor. Que la locura del amor me consuma, que la pasión me ciegue y que la razón se rinda a la fuerza de mi corazó, porque en la locura está la libertad de amar sin límites, de sentir sin miedo y de vivir sin arrepentimientos.
+        </div>
+    </div>
 
-<canvas id="heart" width="1920" height="947"></canvas>
-<script>
-    window.requestAnimationFrame =
-        window.__requestAnimationFrame ||
-        window.requestAnimationFrame ||
-        window.webkitRequestAnimationFrame ||
-        window.mozRequestAnimationFrame ||
-        window.oRequestAnimationFrame ||
-        window.msRequestAnimationFrame ||
-        (function () {
-            return function (callback, element) {
-                var lastTime = element.__lastTime;
-                if (lastTime === undefined) {
-                    lastTime = 0;
-                }
-                var currTime = Date.now();
-                var timeToCall = Math.max(1, 33 - (currTime - lastTime));
-                window.setTimeout(callback, timeToCall);
-                element.__lastTime = currTime + timeToCall;
-            };
-        })();
-    window.isDevice = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(((navigator.userAgent || navigator.vendor || window.opera)).toLowerCase()));
-    var loaded = false;
-    var init = function () {
-        if (loaded) return;
-        loaded = true;
-        var mobile = window.isDevice;
-        var koef = mobile ? 0.5 : 1;
-        var canvas = document.getElementById('heart');
-        var ctx = canvas.getContext('2d');
-        var width = canvas.width = koef * innerWidth;
-        var height = canvas.height = koef * innerHeight;
-        var rand = Math.random;
-        ctx.fillStyle = "rgba(0,0,0,1)";
-        ctx.fillRect(0, 0, width, height);
+    <script>
+        const canvas = document.getElementById('heartCanvas');
+        const ctx = canvas.getContext('2d');
 
-        var heartPosition = function (rad) {
-            //return [Math.sin(rad), Math.cos(rad)];
-            return [Math.pow(Math.sin(rad), 3), -(15 * Math.cos(rad) - 5 * Math.cos(2 * rad) - 2 * Math.cos(3 * rad) - Math.cos(4 * rad))];
-        };
-        var scaleAndTranslate = function (pos, sx, sy, dx, dy) {
-            return [dx + pos[0] * sx, dy + pos[1] * sy];
-        };
+        // Ajustar tamaño del canvas
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
 
-        window.addEventListener('resize', function () {
-            width = canvas.width = koef * innerWidth;
-            height = canvas.height = koef * innerHeight;
-            ctx.fillStyle = "rgba(0,0,0,1)";
-            ctx.fillRect(0, 0, width, height);
-        });
-
-        var traceCount = mobile ? 20 : 50;
-        var pointsOrigin = [];
-        var i;
-        var dr = mobile ? 0.3 : 0.1;
-        for (i = 0; i < Math.PI * 2; i += dr) pointsOrigin.push(scaleAndTranslate(heartPosition(i), 210, 13, 0, 0));
-        for (i = 0; i < Math.PI * 2; i += dr) pointsOrigin.push(scaleAndTranslate(heartPosition(i), 150, 9, 0, 0));
-        for (i = 0; i < Math.PI * 2; i += dr) pointsOrigin.push(scaleAndTranslate(heartPosition(i), 90, 5, 0, 0));
-        var heartPointsCount = pointsOrigin.length;
-
-        var targetPoints = [];
-        var pulse = function (kx, ky) {
-            for (i = 0; i < pointsOrigin.length; i++) {
-                targetPoints[i] = [];
-                targetPoints[i][0] = kx * pointsOrigin[i][0] + width / 2;
-                targetPoints[i][1] = ky * pointsOrigin[i][1] + height / 2;
+        // Clase para las partículas
+        class Particle {
+            constructor(x, y, targetX, targetY) {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.targetX = targetX;
+                this.targetY = targetY;
+                this.speed = 0.02 + Math.random() * 0.02;
+                this.angle = Math.random() * Math.PI * 2;
+                this.size = 1 + Math.random() * 2;
+                this.oscillationSpeed = 0.02 + Math.random() * 0.02;
+                this.oscillationDistance = 5 + Math.random() * 5;
+                this.time = Math.random() * 100;
             }
-        };
 
-        var e = [];
-        for (i = 0; i < heartPointsCount; i++) {
-            var x = rand() * width;
-            var y = rand() * height;
-            e[i] = {
-                vx: 0,
-                vy: 0,
-                R: 2,
-                speed: rand() + 5,
-                q: ~~(rand() * heartPointsCount),
-                D: 2 * (i % 2) - 1,
-                force: 0.2 * rand() + 0.7,
-                f: "hsla(0," + ~~(40 * rand() + 60) + "%," + ~~(60 * rand() + 20) + "%,.3)",
-                trace: []
-            };
-            for (var k = 0; k < traceCount; k++) e[i].trace[k] = {x: x, y: y};
+            update() {
+                this.time += this.oscillationSpeed;
+                
+                // Movimiento hacia el objetivo con oscilación
+                const dx = this.targetX - this.x;
+                const dy = this.targetY - this.y;
+                
+                this.x += dx * this.speed;
+                this.y += dy * this.speed;
+                
+                // Añadir oscilación
+                this.x += Math.sin(this.time) * this.oscillationDistance;
+                this.y += Math.cos(this.time) * this.oscillationDistance;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(255, 0, 0, ${0.3 + Math.sin(this.time) * 0.2})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
         }
 
-        var config = {
-            traceK: 0.4,
-            timeDelta: 0.01
-        };
+        // Función para generar puntos en forma de corazón
+        function heartShape(t, scale = 1, offsetX = 0, offsetY = 0) {
+            const x = 16 * Math.pow(Math.sin(t), 3);
+            const y = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+            return {
+                x: x * scale + offsetX,
+                y: y * scale + offsetY
+            };
+        }
 
-        var time = 0;
-        var loop = function () {
-            var n = -Math.cos(time);
-            pulse((1 + n) * .5, (1 + n) * .5);
-            time += ((Math.sin(time)) < 0 ? 9 : (n > 0.8) ? .2 : 1) * config.timeDelta;
-            ctx.fillStyle = "rgba(0,0,0,.1)";
-            ctx.fillRect(0, 0, width, height);
-            for (i = e.length; i--;) {
-                var u = e[i];
-                var q = targetPoints[u.q];
-                var dx = u.trace[0].x - q[0];
-                var dy = u.trace[0].y - q[1];
-                var length = Math.sqrt(dx * dx + dy * dy);
-                if (10 > length) {
-                    if (0.95 < rand()) {
-                        u.q = ~~(rand() * heartPointsCount);
-                    } else {
-                        if (0.99 < rand()) {
-                            u.D *= -1;
-                        }
-                        u.q += u.D;
-                        u.q %= heartPointsCount;
-                        if (0 > u.q) {
-                            u.q += heartPointsCount;
-                        }
-                    }
-                }
-                u.vx += -dx / length * u.speed;
-                u.vy += -dy / length * u.speed;
-                u.trace[0].x += u.vx;
-                u.trace[0].y += u.vy;
-                u.vx *= u.force;
-                u.vy *= u.force;
-                for (k = 0; k < u.trace.length - 1;) {
-                    var T = u.trace[k];
-                    var N = u.trace[++k];
-                    N.x -= config.traceK * (N.x - T.x);
-                    N.y -= config.traceK * (N.y - T.y);
-                }
-                ctx.fillStyle = u.f;
-                for (k = 0; k < u.trace.length; k++) {
-                    ctx.fillRect(u.trace[k].x, u.trace[k].y, 1, 1);
-                }
-            }
-            ctx.fillStyle = "rgba(255,255,255,1)";
-            for (i = u.trace.length + 13; i--;) ctx.fillRect(targetPoints[i][0], targetPoints[i][1], 2, 2);
+        // Crear partículas
+        const particles = [];
+        const numParticles = 1000;
+        const scale = 15;
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
 
-            window.requestAnimationFrame(loop, canvas);
-        };
-        loop();
-    };
+        for (let i = 0; i < numParticles; i++) {
+            const t = (i / numParticles) * Math.PI * 2;
+            const point = heartShape(t, scale, centerX, centerY);
+            particles.push(new Particle(point.x, point.y, point.x, point.y));
+        }
 
-    var s = document.readyState;
-    if (s === 'complete' || s === 'loaded' || s === 'interactive') init();
-    else document.addEventListener('DOMContentLoaded', init, false);
-</script>
+        // Variables para la animación
+        let time = 0;
+        let morphing = false;
+        let morphTime = 0;
 
-</body></html>
+        // Función de animación
+        function animate() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            time += 0.01;
+            morphTime += 0.005;
+
+            particles.forEach((particle, i) => {
+                const t = (i / numParticles) * Math.PI * 2;
+                const point = heartShape(t + time * 0.5, scale * (1 + Math.sin(morphTime) * 0.2), centerX, centerY);
+                
+                particle.targetX = point.x;
+                particle.targetY = point.y;
+                
+                particle.update();
+                particle.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
