@@ -10,10 +10,8 @@
             background: #000;
             font-family: 'Georgia', serif;
             color: #fff;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
 
         canvas {
@@ -25,12 +23,21 @@
             z-index: 1;
         }
 
-        .container {
+        .scroll-container {
             position: relative;
             z-index: 2;
+            min-height: 100vh;
+            padding: 40px 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .container {
             width: 100%;
             max-width: 1200px;
             margin: 40px;
+            padding-bottom: 100vh; /* Espacio extra al final para scroll */
         }
 
         .poem {
@@ -42,18 +49,80 @@
             border-radius: 20px;
             white-space: pre-line;
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+            margin-bottom: 2rem;
+        }
+
+        /* Estilo para la barra de desplazamiento */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 0, 0, 0.5);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 0, 0, 0.7);
+        }
+
+        /* Indicador de scroll */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+            z-index: 3;
+            animation: bounce 2s infinite;
+            opacity: 1;
+            transition: opacity 0.3s;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
         }
     </style>
 </head>
 <body>
     <canvas id="heartCanvas"></canvas>
-    <div class="container">
-        <div class="poem" id="poem">
-           Una muestra de mí, escrita por mi puño. Hace tiempo mi pasión por el aprendizaje me llevó a cuestionar si esto es lo correcto. Entonces, empecé a leer sobre el hombre intelectual, fui testigo, aún enfrento las consecuencias que el amor al conocimiento sobre mi mente. Tal vez experimenté el amor en ciertas ocasiones, supe tomar límites pues no hubiese sido capaz de tomar medidas estrepitosas por una emoción, a la cual Nietzsche consideraba debilidad. Mi super hombre, mi super yo. Mis accciones siempre estaban al servicio de mi ser, el egoísmo invadía  mi alma. Y hoy, me siento tan vulnerable. ¿Cómo pasé de ser eso a mi yo presente? Hace meses, empecé a hablar con una persona extraña, tenía auras de misterio. Su existencia, no la podía asegurar en cuanto mis ojos no sean testigos de la belleza que atraía. Nunca esperaba algo especial, a la final mi camino estaba tanlejos de ella. En cuanto el tiempo consumía la existencia, la mía estaba condicionada a la esperanza. Buscaba verla, en tanto que mi corazón comenzó a funcionar, antes solo existía vacío. En un momento caí en tristeza, recuerdo no poder llorar, tal vez la depresión se expresa en cualquier nulidad de emociones adyacentes a cualquier acción. El sentirse VIVO. ¡Han derrivado al invencible! Los demonios de mi cabeza clamaban. El caos en mi mente, la lucha ocnstante contra mí mismo. Nunca había enfrentado un reto más grande que el desafiarme a mí mismo. Pero, en el momento que tú llegas, el orden se restablece. Como cuál diosa justiciera, la que me trae armonía. En el Banquete, el amor es considerado desde varios puntos. muchos lo consideran como una enfermedad, otros como la búsqueda de la perfección. Y si mi cuerpo reacciona al amor, las frustraciones en noches enteras sin dormir. O tal vez, no haber dormido pero hablar contigo en ese lapso. ¿Cariño y si te digo quee stoy lidiando con mi locura? Escribiendo esto me quiebro, pero mi voluntad sobrepone sus deseos, y mi corazón late con una fuerza que me hace sentir vivo, aunque mi alma esté llena de dudas y temores. Sin embargo es en este acto de escribir que encuentro la libertad de ser yo mismo, de dejar que mis pesnamientos y sentimientos fluyan sin restricciones, y de permitir que mi verdadero yo se manifieste, aunque sea con la vulnerabilidad que conlleva. No estoy cuerdo, pensaría que un reseteo de mi mente será una buena opción. Pero no, la dulzura que un día compartiste conmigo no existirá en otra realidad. Y si la locura se agrava, acepto mi destino, mi fracaso pero victoria en tanto que permitiste que mi vida tenga sentido. Siempre minimizaba el poder del amor. El poder de tu amor, ha dominado a mi ser, hoy me declaro irrevocablemente tuyo, un regalo de mi corazón y mi alma, sin condiciones ni reservas. Me entrego a ti, sin pedir nada a cambio, solo deseando ser tuyo, completamente y para siempre. Mi amor, mi vida, mi todo, te pertenezco desde este momento, te ama´re y cuidaré con cada fibra de mi ser, sin importarme nada más que tu felicidad y tu amor. Que la locura del amor me consuma, que la pasión me ciegue y que la razón se rinda a la fuerza de mi corazó, porque en la locura está la libertad de amar sin límites, de sentir sin miedo y de vivir sin arrepentimientos.
+    <div class="scroll-container">
+        <div class="container">
+            <div class="poem" id="poem">
+				Una muestra de mí, escrita por mi puño. Hace tiempo mi pasión por el aprendizaje me llevó a cuestionar si esto es lo correcto. Entonces, empecé a leer sobre el hombre intelectual, fui testigo, aún enfrento las consecuencias que el amor al conocimiento sobre mi mente. 
+				Tal vez experimenté el amor en ciertas ocasiones, supe tomar límites pues no hubiese sido capaz de tomar medidas estrepitosas por una emoción, a la cual Nietzsche consideraba debilidad.
+				Mi super hombre, mi super yo. Mis accciones siempre estaban al servicio de mi ser, el egoísmo invadía  mi alma. Y hoy, me siento tan vulnerable. ¿Cómo pasé de ser eso a mi yo presente?
+				Hace meses, empecé a hablar con una persona extraña, tenía auras de misterio. Su existencia, no la podía asegurar en cuanto mis ojos no sean testigos de la belleza que atraía. Nunca esperaba algo especial, a la final mi camino estaba tanlejos de ella. En cuanto el tiempo consumía la existencia, la mía estaba condicionada a la esperanza. 
+				Buscaba verla, en tanto que mi corazón comenzó a funcionar, antes solo existía vacío. En un momento caí en tristeza, recuerdo no poder llorar, tal vez la depresión se expresa en cualquier nulidad de emociones adyacentes a cualquier acción. El sentirse VIVO. 
+				¡Han derrivado al invencible! 
+				Los demonios de mi cabeza clamaban. El caos en mi mente, la lucha ocnstante contra mí mismo. Nunca había enfrentado un reto más grande que el desafiarme a mí mismo. Pero, en el momento que tú llegas, el orden se restablece. Como cuál diosa justiciera, la que me trae armonía. 
+				En el Banquete, el amor es considerado desde varios puntos. muchos lo consideran como una enfermedad, otros como la búsqueda de la perfección. Y si mi cuerpo reacciona al amor, las frustraciones en noches enteras sin dormir. O tal vez, no haber dormido pero hablar contigo en ese lapso. 
+				¿Cariño y si te digo quee stoy lidiando con mi locura?
+				Escribiendo esto me quiebro, pero mi voluntad sobrepone sus deseos, y mi corazón late con una fuerza que me hace sentir vivo, aunque mi alma esté llena de dudas y temores. 
+				Sin embargo es en este acto de escribir que encuentro la libertad de ser yo mismo, de dejar que mis pesnamientos y sentimientos fluyan sin restricciones, y de permitir que mi verdadero yo se manifieste, aunque sea con la vulnerabilidad que conlleva. 
+				No estoy cuerdo, pensaría que un reseteo de mi mente será una buena opción. Pero no, la dulzura que un día compartiste conmigo no existirá en otra realidad. Y si la locura se agrava, acepto mi destino, mi fracaso pero victoria en tanto que permitiste que mi vida tenga sentido. 
+				Siempre minimizaba el poder del amor. El poder de tu amor, ha dominado a mi ser, hoy me declaro irrevocablemente tuyo, un regalo de mi corazón y mi alma, sin condiciones ni reservas. Me entrego a ti, sin pedir nada a cambio, solo deseando ser tuyo, completamente y para siempre. 
+				Mi amor, mi vida, mi todo, te pertenezco desde este momento, te ama´re y cuidaré con cada fibra de mi ser, sin importarme nada más que tu felicidad y tu amor. Que la locura del amor me consuma, que la pasión me ciegue y que la razón se rinda a la fuerza de mi corazó, porque en la locura está la libertad de amar sin límites, de sentir sin miedo y de vivir sin arrepentimientos.
+            </div>
         </div>
     </div>
+    <div class="scroll-indicator">Continua</div>
 
     <script>
+        // [El mismo código JavaScript del corazón anterior]
         const canvas = document.getElementById('heartCanvas');
         const ctx = canvas.getContext('2d');
 
@@ -83,14 +152,12 @@
             update() {
                 this.time += this.oscillationSpeed;
                 
-                // Movimiento hacia el objetivo con oscilación
                 const dx = this.targetX - this.x;
                 const dy = this.targetY - this.y;
                 
                 this.x += dx * this.speed;
                 this.y += dy * this.speed;
                 
-                // Añadir oscilación
                 this.x += Math.sin(this.time) * this.oscillationDistance;
                 this.y += Math.cos(this.time) * this.oscillationDistance;
             }
@@ -103,7 +170,6 @@
             }
         }
 
-        // Función para generar puntos en forma de corazón
         function heartShape(t, scale = 1, offsetX = 0, offsetY = 0) {
             const x = 16 * Math.pow(Math.sin(t), 3);
             const y = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
@@ -113,7 +179,6 @@
             };
         }
 
-        // Crear partículas
         const particles = [];
         const numParticles = 1000;
         const scale = 15;
@@ -126,12 +191,9 @@
             particles.push(new Particle(point.x, point.y, point.x, point.y));
         }
 
-        // Variables para la animación
         let time = 0;
-        let morphing = false;
         let morphTime = 0;
 
-        // Función de animación
         function animate() {
             ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -154,6 +216,20 @@
         }
 
         animate();
+
+        // Ocultar el indicador de scroll cuando el usuario comience a desplazarse
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        let scrollTimeout;
+
+        window.addEventListener('scroll', () => {
+            scrollIndicator.style.opacity = '0';
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                if (window.scrollY < 100) {
+                    scrollIndicator.style.opacity = '1';
+                }
+            }, 1000);
+        });
     </script>
 </body>
 </html>
